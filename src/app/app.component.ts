@@ -1,9 +1,23 @@
-import { Component } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '1 <router-outlet></router-outlet>'
+  template: `
+    <app-title *ngIf="destruir"></app-title>
+    <br>
+    <button (click)="destruirComponente()">Destruir componente</button>
+    <router-outlet></router-outlet>
+  `
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
+  public destruir: boolean = true;
+
+  constructor() {}
+
+  ngOnInit(): void { }
+
+  public destruirComponente() {
+    this.destruir = false;
+  }
 }
